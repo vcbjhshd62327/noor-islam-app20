@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noor Islam — قصص الأنبياء</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --muted:#a9b2d3;
+      --text:#eef1ff;
+      --accent:#f2c14e;
+      --accent2:#7aa2ff;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:radial-gradient(1200px 700px at 80% -10%, rgba(122,162,255,.25), transparent 55%), radial-gradient(900px 500px at 10% 0%, rgba(242,193,78,.20), transparent 60%), var(--bg); color:var(--text);}
+    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(10px); background:rgba(11,16,32,.65); border-bottom:1px solid var(--border);}
+    .wrap{max-width:1100px;margin:auto;padding:16px;}
+    .topbar{display:flex; gap:12px; align-items:center; justify-content:space-between;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffdf8a); box-shadow:var(--shadow);}
+    .title{font-weight:900; letter-spacing:.2px;}
+    .subtitle{color:var(--muted); font-size:12px;}
+    .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .chip{border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--text); padding:10px 12px; border-radius:999px; display:flex; align-items:center; gap:8px;}
+    input,select{outline:none; border:none; background:transparent; color:var(--text); font-size:14px; min-width:180px;}
+    input::placeholder{color:rgba(238,241,255,.55);}
+    .btn{cursor:pointer; user-select:none; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--text); padding:10px 12px; border-radius:12px;}
+    .btn:hover{background:rgba(255,255,255,.10);}
+    main{padding:16px 0 90px;}
+    .grid{display:grid; gap:14px; grid-template-columns:repeat(12,1fr);}
+    .card{grid-column:span 4; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative;}
+    .card .head{padding:16px 16px 10px; display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
+    .name{font-weight:900; font-size:18px;}
+    .tag{font-size:12px; color:var(--muted);}
+    .meta{padding:0 16px 12px; color:var(--muted); font-size:13px; line-height:1.7;}
+    .bar{display:flex; gap:8px; flex-wrap:wrap; padding:0 16px 16px;}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:rgba(0,0,0,.12);}
+    .pill.a{border-color:rgba(242,193,78,.35); background:rgba(242,193,78,.10);}
+    .pill.b{border-color:rgba(122,162,255,.35); background:rgba(122,162,255,.10);}
+    .open{padding:12px 16px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:10px;}
+    .open .more{color:var(--accent); font-weight:800;}
+    .open .ico{opacity:.9}
+    .card:hover{transform:translateY(-2px); transition:.15s ease;}
+    @media (max-width:980px){ .card{grid-column:span 6;} }
+    @media (max-width:640px){ .card{grid-column:span 12;} input,select{min-width:120px;} }
+
+    /* Modal */
+    .modal{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:16px; z-index:100;}
+    .modal.show{display:flex;}
+    .sheet{max-width:900px; width:100%; max-height:88vh; overflow:auto; border:1px solid var(--border); background:rgba(18,26,51,.96); border-radius:22px; box-shadow:var(--shadow);}
+    .sheetHeader{position:sticky; top:0; background:rgba(18,26,51,.96); border-bottom:1px solid var(--border); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px;}
+    .sheetHeader .h{font-weight:900;}
+    .close{border:1px solid var(--border); background:rgba(255,255,255,.06); border-radius:12px; padding:8px 10px; cursor:pointer;}
+    .content{padding:16px;}
+    .section{border:1px solid var(--border); background:rgba(255,255,255,.04); border-radius:18px; padding:14px; margin-bottom:12px;}
+    .section h3{margin:0 0 8px; font-size:15px;}
+    .section p{margin:0; color:var(--text); line-height:1.9;}
+    .timeline{display:flex; flex-direction:column; gap:10px; margin-top:8px;}
+    .titem{border:1px dashed rgba(255,255,255,.18); border-radius:14px; padding:12px;}
+    .titem .t{font-weight:900; color:var(--accent2); margin-bottom:6px;}
+    .titem .d{color:var(--muted); line-height:1.8;}
+    footer{position:fixed; left:0; right:0; bottom:0; background:rgba(11,16,32,.75); backdrop-filter: blur(10px); border-top:1px solid var(--border);}
+    .nav{max-width:1100px;margin:auto;padding:10px 16px; display:flex; gap:10px; justify-content:space-between; align-items:center;}
+    a.navbtn{flex:1; text-align:center; text-decoration:none; color:var(--text); border:1px solid var(--border); background:rgba(255,255,255,.06); padding:10px 12px; border-radius:14px;}
+    a.navbtn:hover{background:rgba(255,255,255,.10);}
+    .hint{color:var(--muted); font-size:12px;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">قصص الأنبياء</div>
+          <div class="subtitle">بحث + تصنيف + خط زمني + “اقرأ المزيد”</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="chip">
+          🔎 <input id="q" placeholder="ابحث باسم النبي… (مثال: موسى)" />
+        </div>
+        <div class="chip">
+          🗂️
+          <select id="group">
+            <option value="all">الكل</option>
+            <option value="adam">من آدم</option>
+            <option value="bani">بني إسرائيل</option>
+            <option value="arab">أنبياء عرب</option>
+          </select>
+        </div>
+        <button class="btn" id="reset">إعادة</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hint">⚠️ التواريخ الدقيقة (ميلاد/وفاة) مش ثابتة تاريخيًا لمعظم الأنبياء — هنستخدم “تقريبي/غير معلوم” ونركز على الأحداث الصحيحة.</div>
+  <div style="height:12px"></div>
+  <div id="grid" class="grid"></div>
+</main>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheetHeader">
+      <div>
+        <div class="h" id="mName">—</div>
+        <div class="subtitle" id="mMeta">—</div>
+      </div>
+      <button class="close" id="mClose">✖</button>
+    </div>
+    <div class="content" id="mContent"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="nav">
+    <a class="navbtn" href="./index.html">🏠 الرئيسية</a>
+    <a class="navbtn" href="./prayer.html">🕋 مواقيت الصلاة</a>
+    <a class="navbtn" href="./quran.html">📖 القرآن</a>
+    <a class="navbtn" href="./prophets.html">📚 الأنبياء</a>
+  </div>
+</footer>
+
+<script>
+/*
+  ✅ عدّل المحتوى بسهولة:
+  - كل نبي ليه: name / group / era / short / timeline[] / sources[]
+  - لو عايز “موسوعة كاملة”، هنبعتها كـ prophets.json ونحمّلها بدل ما تكون جوه الكود.
+*/
+const PROPHETS = [
+  {
+    id:"adam",
+    name:"آدم عليه السلام",
+    group:"adam",
+    era:"بداية البشرية",
+    short:"أول البشر وأول الأنبياء. عِلْمُ الأسماء، السكن في الجنة، ثم الهبوط للأرض والتوبة.",
+    timeline:[
+      {t:"الخلق", d:"خلق الله آدم وعلّمه الأسماء."},
+      {t:"الجنة والابتلاء", d:"سكن الجنة ووقع الابتلاء ثم التوبة."},
+      {t:"الخلافة في الأرض", d:"بدء عمارة الأرض وبداية نسل البشر."}
+    ],
+    notes:"لو عايز تفاصيل أكتر: زوّد هنا أو خليها من ملف JSON خارجي."
+  },
+  {
+    id:"nuh",
+    name:"نوح عليه السلام",
+    group:"adam",
+    era:"قبل الطوفان",
+    short:"دعا قومه للتوحيد سنوات طويلة، ثم جاء الطوفان ونجاة المؤمنين بالسفينة.",
+    timeline:[
+      {t:"الدعوة", d:"دعوة طويلة وصبر على الأذى."},
+      {t:"السفينة", d:"صناعة السفينة بأمر الله."},
+      {t:"الطوفان والنجاة", d:"هلاك المكذبين ونجاة المؤمنين."}
+    ]
+  },
+  {
+    id:"ibrahim",
+    name:"إبراهيم عليه السلام",
+    group:"arab",
+    era:"أبو الأنبياء",
+    short:"تحطيم الأصنام، الابتلاءات العظيمة، وبناء الكعبة مع إسماعيل.",
+    timeline:[
+      {t:"كسر الأصنام", d:"موقفه مع قومه في عبادة الأصنام."},
+      {t:"الابتلاء", d:"ابتلاءات متعددة وصبر وثبات."},
+      {t:"بناء الكعبة", d:"رفع القواعد مع إسماعيل."}
+    ]
+  },
+  {
+    id:"musa",
+    name:"موسى عليه السلام",
+    group:"bani",
+    era:"مع فرعون وبني إسرائيل",
+    short:"رسالة إلى فرعون، معجزات، خروج بني إسرائيل، واستلام الألواح.",
+    timeline:[
+      {t:"الرسالة", d:"بعث إلى فرعون ودعاه للتوحيد."},
+      {t:"الخروج", d:"نجاة بني إسرائيل وغرق فرعون."},
+      {t:"التشريع", d:"الألواح وتنظيم حياة بني إسرائيل."}
+    ]
+  },
+  {
+    id:"isa",
+    name:"عيسى عليه السلام",
+    group:"bani",
+    era:"قبل النبي محمد ﷺ",
+    short:"ولد بمعجزة، دعا إلى التوحيد، وآتاه الله الإنجيل. (تفاصيل الرفع كما وردت شرعًا).",
+    timeline:[
+      {t:"الميلاد", d:"ميلاد معجزي وكلام في المهد."},
+      {t:"الدعوة", d:"دعوة بني إسرائيل للتوحيد."},
+      {t:"الرفع", d:"تفاصيله حسب النصوص الشرعية."}
+    ]
+  },
+  {
+    id:"muhammad",
+    name:"محمد ﷺ",
+    group:"arab",
+    era:"خاتم الأنبياء",
+    short:"نزل عليه الوحي، هاجر إلى المدينة، وبنى دولة الإسلام وأتم البلاغ.",
+    timeline:[
+      {t:"الوحي", d:"بدء نزول الوحي والدعوة."},
+      {t:"الهجرة", d:"الهجرة وبناء المجتمع."},
+      {t:"البلاغ", d:"اكتمال الرسالة ونشر الإسلام."}
+    ]
+  }
+];
+
+const grid = document.getElementById("grid");
+const q = document.getElementById("q");
+const group = document.getElementById("group");
+const reset = document.getElementById("reset");
+const modal = document.getElementById("modal");
+const mClose = document.getElementById("mClose");
+const mName = document.getElementById("mName");
+const mMeta = document.getElementById("mMeta");
+const mContent = document.getElementById("mContent");
+
+function pill(txt, cls=""){
+  return `<span class="pill ${cls}">${txt}</span>`;
+}
+
+function card(p){
+  return `
+    <div class="card" onclick="openProphet('${p.id}')">
+      <div class="head">
+        <div>
+          <div class="name">${p.name}</div>
+          <div class="tag">${p.era || ""}</div>
+        </div>
+        <div class="ico">➜</div>
+      </div>
+      <div class="meta">${p.short}</div>
+      <div class="bar">
+        ${pill(p.group==="adam"?"من آدم":"", "a")}
+        ${pill(p.group==="bani"?"بني إسرائيل":"", "b")}
+        ${pill(p.group==="arab"?"أنبياء عرب":"", "a")}
+      </div>
+      <div class="open">
+        <div class="more">افتح القصة</div>
+        <div class="tag">Timeline + المزيد</div>
+      </div>
+    </div>
+  `;
+}
+
+function render(){
+  const text = (q.value||"").trim();
+  const g = group.value;
+
+  const filtered = PROPHETS.filter(p=>{
+    const okText = !text || p.name.includes(text);
+    const okGroup = (g==="all") || (p.group===g);
+    return okText && okGroup;
+  });
+
+  grid.innerHTML = filtered.map(card).join("") || `<div class="hint">لا توجد نتائج… جرّب اسم مختلف.</div>`;
+}
+
+window.openProphet = (id)=>{
+  const p = PROPHETS.find(x=>x.id===id);
+  if(!p) return;
+
+  mName.textContent = p.name;
+  mMeta.textContent = `${p.era || ""} • تصنيف: ${p.group}`;
+
+  const tl = (p.timeline||[]).map(x=>`
+    <div class="titem">
+      <div class="t">${x.t}</div>
+      <div class="d">${x.d}</div>
+    </div>
+  `).join("");
+
+  mContent.innerHTML = `
+    <div class="section">
+      <h3>ملخص سريع</h3>
+      <p>${p.short}</p>
+    </div>
+
+    <div class="section">
+      <h3>الخط الزمني (Timeline)</h3>
+      <div class="timeline">${tl || `<div class="hint">لا يوجد Timeline بعد.</div>`}</div>
+    </div>
+
+    <div class="section">
+      <h3>تفاصيل أكثر</h3>
+      <p>${p.notes || "هنا هنحط التفاصيل الطويلة… (ابعتلي الملف اللي عايزه، وأنا أركّبه لك في JSON كبير)."} </p>
+    </div>
+  `;
+
+  modal.classList.add("show");
+};
+
+mClose.onclick = ()=> modal.classList.remove("show");
+modal.onclick = (e)=>{ if(e.target===modal) modal.classList.remove("show"); };
+
+q.addEventListener("input", render);
+group.addEventListener("change", render);
+reset.addEventListener("click", ()=>{ q.value=""; group.value="all"; render(); });
+
+render();
+</script>
+
+</body>
+</html>
